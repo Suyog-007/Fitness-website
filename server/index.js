@@ -1,22 +1,38 @@
-require('dotenv').config();
-const express = require('express');
+const express = require("express");
+const dotenv = require("dotenv");
 const app = express();
-const cors=require('cors');
-const postRoute = require("./routes/combineApi");
+const cors = require("cors");
+const mashupRoute = require("./routes/combineApi");
+const auth = require("./routes/user");
+const mongoose = require("mongoose");
+dotenv.config();
+const PORT = 8000;
+const corsOptions = {
+  origin: "*",
+};
 
-
-//middlewares
-app.use(express.json());
-const corsOptions={
-    origin:"*",
-    credentials: true,
-    optionSuccessStatus:200,
-  }
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors(corsOptions));
-app.use('/api/posts',postRoute);
 
+// {* All the routes here *}
 
-const port =process.env.PORT || 8080;
-app.listen(port,()=>{
-    console.log("Listening to port 8080");
+app.use("/api/combineApi", mashupRoute);
+app.use("/api/user", auth);
+
+app.listen(PORT, async () => {
+  try {
+    await mongoose.connect(
+      process.env.MONGO_URL,
+      {
+        useNewUrlParser: true,
+      },
+      () => {
+        console.log("Connected to db");
+        console.log(`Server running at port ${PORT}`);
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
 });

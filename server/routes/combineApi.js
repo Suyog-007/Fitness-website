@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {
-  getAllPosts,
-} = require("../controllers/post");
+const { combineApi } = require("../controllers/combineApi");
 
-router.get("/", getAllPosts);
+router.get("/", combineApi);
 
 module.exports = router;
