@@ -7,7 +7,6 @@ const getUser = async (req, res) => {
     data.password = undefined;
     res.status(200).send({ user: data });
   } catch (error) {
-    // console.error(error.message);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
@@ -34,7 +33,6 @@ const signup = async (req, res) => {
 };
 const login = async (req, res, next) => {
   try {
-    //console.log("Jello");
     const { error } = validateLogin(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
@@ -47,7 +45,6 @@ const login = async (req, res, next) => {
 
     if (await argon2.verify(user.password, req.body.password)) {
       const token = user.generateAuthToken();
-      await redis.set(user._id.toString(), JSON.stringify(user));
       return res.status(200).send({
         token: "Bearer " + token,
         message: "Logged In Successfully",
