@@ -7,40 +7,30 @@ const combineApi = async (req, res, next) => {
     const exerciseOptions = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process.env.ExerciseDB_X_RapidAPI_Key,
-        "X-RapidAPI-Host": process.env.ExerciseDB_X_RapidAPI_Host,
+        "X-RapidAPI-Key":"4d0a03ca0dmsh7859b370c28df66p1bc75cjsne0ccad53d0e6",
+        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
       },
     };
 
     const youtubeOptions = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process.env.YoutubeDB_X_RapidAPI_Key,
-        "X-RapidAPI-Host": process.env.YoutubeDB_X_RapidAPI_Host,
+        "X-RapidAPI-Key": "4d0a03ca0dmsh7859b370c28df66p1bc75cjsne0ccad53d0e6",
+        "X-RapidAPI-Host": "youtube-search-and-download.p.rapidapi.com",
       },
     };
 
-    const BMIOptions = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": process.env.BMI_X_RapidAPI_Key,
-        "X-RapidAPI-Host": process.env.BMI_X_RapidAPI_Host,
-      },
-    };
-    const exerciseData = await axios.get(
-      `https://exercisedb.p.rapidapi.com/exercises`,
+    const {data}= await axios.get(
+      `https://exercisedb.p.rapidapi.com/exercises/bodyPartList`,
       exerciseOptions
     );
-    const youtubeData = await axios.get(
-      `https://youtube-search-and-download.p.rapidapi.com`,
-      youtubeOptions
-    );
-    const Data = await axios.get(
-      `https://exercisedb.p.rapidapi.com/exercises`,
-      BMIOptions
-    );
-
-    res.send({ exerciseData, youtubeData, Data });
+    console.log(data)
+    // const youtubeData = await axios.get(
+    //   `https://youtube-search-and-download.p.rapidapi.com`,
+    //   youtubeOptions
+    // );
+    //res.send({ exerciseData, youtubeData, Data });
+    return res.send( data)
   } catch (e) {
     console.log(e);
     res.status(400).send({ message: "error" });
