@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import { Box } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
@@ -12,13 +12,15 @@ import Login from './pages/Login/Login';
 import { ToastContainer } from 'react-toastify';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <Box width="400px" sx={{ width: { xl: '1488px' } }} m="auto">
       <ToastContainer />
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<Login />} />
+        <Route path="/auth" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         {/* <Route path="/exercise/:id" element={<ExcerciseDetail />} /> */}
         {/* <Route path="/BmiCalculator" element={<BmiCalculator />} /> */}
       </Routes>

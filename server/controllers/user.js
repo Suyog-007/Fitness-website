@@ -45,8 +45,10 @@ const login = async (req, res, next) => {
 
     if (await argon2.verify(user.password, req.body.password)) {
       const token = user.generateAuthToken();
+      user.password = undefined;
       return res.status(200).send({
         token: "Bearer " + token,
+        user,
         message: "Logged In Successfully",
       });
     } else {

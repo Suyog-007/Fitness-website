@@ -4,15 +4,8 @@ import { Stack } from '@mui/material';
 import Logo from '../../assets/images/Logo.png';
 import './Navbar.css'
 
-const Navbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
+  const loggedInData = JSON.parse(localStorage.getItem('fitnessUser'));
 
   return (<div className='Navbar'>
     <Link to="/"><img src={Logo} alt="logo" /></Link>
@@ -20,13 +13,13 @@ const Navbar = () => {
     <a href="#exercises" >Exercises</a>
     <Link to="/BmiCalculator">BMI Calculator</Link>
     {
-      localStorage.getItem('token') ? (
+      !isAuthenticated ? (
         <div className='utils'>
           <Link to='/auth?type=login'>Login</Link>
           <Link to='/auth?type=signup'><span>Sign Up</span></Link>
         </div>) : (
         <div className='utils'>
-          <div className="name">Suyog</div>
+          <div className="name">{loggedInData.user.firstName + " " + loggedInData.user.lastName}</div>
         </div>
       )
     }

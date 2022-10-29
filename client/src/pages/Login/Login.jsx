@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Login.css'
 import Logo from '../../assets/images/Logo.png'
 import banner1 from '../../assets/images/authBanner1.jpg';
@@ -11,10 +11,11 @@ import { FaFacebookF } from "react-icons/fa";
 
 const SERVER_API_URL = process.env.REACT_APP_API_URL;
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const container = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const type = searchParams.get("type");
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -44,9 +45,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(`${SERVER_API_URL}/user/signup`, signupData);
-      console.log(res);
+      navigate("/login?type=login");
     } catch (e) {
-      alert(e.response.data.message);
+      alert(e);
       console.log(e);
     }
   }
@@ -54,10 +55,20 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${SERVER_API_URL}/user/login`, loginData);
-      console.log(res);
+      const res = await axios.post(`${SERVER_API_URL}/user/login`, {
+        email: loginData.email,
+        password: loginData.password,
+      });
+      const userData = {
+        token: res.data.token,
+        user: res.data.user,
+      }
+      const stringifiedData = JSON.stringify(userData);
+      localStorage.setItem('fitnessUser', stringifiedData);
+      setIsAuthenticated(true);
+      navigate("/");
     } catch (e) {
-      alert(e.response.data.message);
+      alert(e);
       console.log(e);
     }
   }

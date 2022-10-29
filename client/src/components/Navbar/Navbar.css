@@ -37,3 +37,9 @@ a span {
   gap: 30px;
   margin-left: auto;
 }
+
+.Navbar .name {
+  color: aliceblue;
+  font-weight: 600;
+  color: #ffb700;
+}
