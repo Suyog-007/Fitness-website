@@ -45,7 +45,7 @@ const Login = ({ setIsAuthenticated }) => {
     e.preventDefault();
     try {
       const res = await axios.post(`${SERVER_API_URL}/user/signup`, signupData);
-      navigate("/login?type=login");
+      navigate("/auth?type=login");
     } catch (e) {
       alert(e);
       console.log(e);

@@ -6,6 +6,10 @@ import './Navbar.css'
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const loggedInData = JSON.parse(localStorage.getItem('fitnessUser'));
+  const logout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('fitnessUser');
+  };
 
   return (<div className='Navbar'>
     <Link to="/"><img src={Logo} alt="logo" /></Link>
@@ -20,6 +24,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
         </div>) : (
         <div className='utils'>
           <div className="name">{loggedInData.user.firstName + " " + loggedInData.user.lastName}</div>
+          <div className="logout" onClick={logout}>Logout</div>
         </div>
       )
     }
