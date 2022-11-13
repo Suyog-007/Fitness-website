@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const mashupRoute = require("./routes/combineApi");
 const auth = require("./routes/user");
+const review =require("./routes/review")
 const mongoose = require("mongoose");
 dotenv.config();
 const PORT = 8000;
@@ -19,6 +20,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/combineApi", mashupRoute);
 app.use("/api/user", auth);
+app.use("/api/reviews",review)
 
 app.listen(PORT, async () => {
   try {
