@@ -1,10 +1,11 @@
-const express = require("express");//framework for rest api
-const dotenv = require("dotenv");//env access package
-const app = express();//create express app
-const cors = require("cors");//cross origin rerference package
-const mashupRoute = require("./routes/combineApi");//mashup route package
-const auth = require("./routes/user");//authentication routes
-const mongoose = require("mongoose");//ODM-object data mapping package
+const express = require("express");
+const dotenv = require("dotenv");
+const app = express();
+const cors = require("cors");
+const mashupRoute = require("./routes/combineApi");
+const auth = require("./routes/user");
+const review =require("./routes/review")
+const mongoose = require("mongoose");
 dotenv.config();
 const PORT = 8000;
 const corsOptions = {
@@ -20,6 +21,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/combineApi", mashupRoute);
 app.use("/api/user", auth);
+app.use("/api/reviews",review)
 
 app.listen(PORT, async () => {
   try {
