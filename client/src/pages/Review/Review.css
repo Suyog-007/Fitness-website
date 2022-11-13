@@ -1,0 +1,56 @@
+.Review_wrapper {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.star_container {
+  color: #ddd;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.star_container .star {
+  padding: 0 1rem;
+  width: max-content;
+  cursor: pointer;
+  height: max-content;
+}
+
+.star_container .star svg {
+  font-size: 2rem;
+}
+
+.star_container .star svg:hover,
+.star_container .star.active svg,
+.star_container .star.active-star svg {
+  color: #d6ce59;
+}
+
+.post_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  width: 40rem;
+  background: rgb(255, 255, 255);
+  color: black;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.post_wrapper h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post_wrapper textarea {
+  width: 30rem;
+  height: 10rem;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  margin-bottom: 20px;
+  border: 1px solid rgb(174, 173, 173);
+  resize: vertical;
+}
