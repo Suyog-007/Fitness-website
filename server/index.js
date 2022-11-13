@@ -9,9 +9,10 @@ const mongoose = require("mongoose");
 dotenv.config();
 const PORT = 8000;
 const corsOptions = {
-  origin: "*",
+  origin: "*",//can be access from any where(no PORT restriction)
 };
 
+//boiler plate - req,res options
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors(corsOptions));
@@ -24,7 +25,7 @@ app.use("/api/reviews",review)
 
 app.listen(PORT, async () => {
   try {
-    await mongoose.connect(
+    await mongoose.connect(//wating for moongose to connect
       process.env.DATABASE_URL.toString(),
       {
         useNewUrlParser: true,
@@ -35,7 +36,7 @@ app.listen(PORT, async () => {
         console.log(`Server running at port ${PORT}`);
       }
     );
-  } catch (e) {
+  } catch (e) {//error
     console.log(e);
   }
 });

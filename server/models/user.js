@@ -1,3 +1,5 @@
+
+//defining user schema and validation of fuction-validate Signup and validate Login
 const mongoose = require("mongoose");
 const passwordComplexity = require("joi-password-complexity");
 const Joi = require("joi");

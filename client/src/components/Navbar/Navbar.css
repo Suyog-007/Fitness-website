@@ -1,0 +1,60 @@
+.Navbar {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin: 0 40px;
+  padding-top: 20px;
+}
+
+.Navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.Navbar a:nth-child(2) {
+  padding: 5px 10px;
+  border-bottom: 4px solid #ffb700;
+  margin-left: 60px;
+}
+
+.Navbar .utils a {
+  border-bottom: none;
+  padding: 0;
+  margin: 0;
+}
+
+a span {
+  font-size: 16px;
+  background: #ffb700;
+  color: var(--color-primary);
+  padding: 6px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.Navbar a:hover {
+  color: #ffb700;
+}
+
+.Navbar .utils {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+
+.Navbar .name {
+  color: aliceblue;
+  font-weight: 600;
+  color: #ffb700;
+}
+
+.Navbar .logout {
+  background: #ffb700;
+  padding: 6px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
