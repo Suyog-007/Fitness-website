@@ -3,12 +3,30 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import './Review.css'
 import axios from 'axios';
 
+const SERVER_URL = process.env.REACT_APP_API_URL;
 const Review = () => {
 	const [rateData, setRateData] = useState({
 		rating: 0,
 		review: '',
 	});
+	const [feedbacks, setFeedbacks] = useState([]);
 	const ratingRef = useRef(null);
+
+	useEffect(() => {
+		const userData = localStorage.getItem('fitnessUser');
+		axios.get(`${SERVER_URL}/reviews`, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `${JSON.parse(userData).token}`,
+			},
+		}).then((res) => {
+			setFeedbacks(res.data.data);
+		}).catch((err) => {
+			console.log(err);
+		});
+
+
+	}, [])
 
 	useEffect(() => {
 		if (ratingRef.current) {
@@ -72,12 +90,29 @@ const Review = () => {
 	}
 
 	const PostFeedback = () => {
-		if (rateData.rating === 0 || rateData.review === '') {
-			alert('Please enter all the fields');
-			return;
+		const userData = localStorage.getItem('fitnessUser');
+		if (userData) {
+			if (rateData.rating === 0 || rateData.review === '') {
+				alert('Please enter all the fields');
+				return;
+			} else {
+				console.log(rateData, JSON.parse(userData).token);
+				axios.post(`${SERVER_URL}/reviews`, rateData, {
+					headers: {
+						Authorization: `${JSON.parse(userData).token}`
+					}
+				})
+					.then(res => {
+						console.log(res);
+					})
+					.catch(err => {
+						console.log(err);
+					})
+			}
 		} else {
-
+			alert('Please login to post feedback');
 		}
+
 	}
 
 	return (
@@ -106,6 +141,33 @@ const Review = () => {
 				</div>
 				<button onClick={PostFeedback}>Post Your Feedback</button>
 			</div>
+
+			{
+				feedbacks.length > 0 ?
+					<div className="feedbacks_wrapper">
+						<h1>Feedbacks</h1>
+						{
+							feedbacks.map((feedback, index) => {
+								return (
+									<div className="feedback" key={index}>
+										<div className="rating">
+											{
+												[...Array(feedback.rating)].map((star, index) => {
+													return (
+														<AiFillStar key={index} />
+													)
+												})
+											}
+										</div>
+										<div className="feedback_content">
+											{feedback.review}
+										</div>
+									</div>
+								)
+							})
+						}
+					</div> : ""
+			}
 		</div>
 	)
 }

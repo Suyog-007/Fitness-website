@@ -5,11 +5,19 @@ import Logo from '../../assets/images/Logo.png';
 import './Navbar.css'
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
-  const loggedInData = JSON.parse(localStorage.getItem('fitnessUser'));
+  const [loggedInData, setLoggedInData] = useState(JSON.parse(localStorage.getItem('fitnessUser')));
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('fitnessUser');
   };
+
+  useEffect(() => {
+    const userData = localStorage.getItem('fitnessUser');
+    if (userData) {
+      setLoggedInData(JSON.parse(userData));
+      setIsAuthenticated(true);
+    }
+  }, [isAuthenticated]);
 
   return (<div className='Navbar'>
     <Link to="/"><img src={Logo} alt="logo" /></Link>

@@ -37,7 +37,7 @@
   background: rgb(255, 255, 255);
   color: black;
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 0.6rem;
 }
 
 .post_wrapper h1 {
@@ -53,4 +53,24 @@
   margin-bottom: 20px;
   border: 1px solid rgb(174, 173, 173);
   resize: vertical;
+}
+
+.feedbacks_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedbacks_wrapper .feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  width: 40rem;
+  background: rgb(255, 255, 255);
+  color: black;
+  padding: 1rem;
+  border-radius: 0.6rem;
 }
