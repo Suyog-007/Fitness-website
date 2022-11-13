@@ -3,7 +3,9 @@ const { User, validateSignup, validateLogin } = require("../models/user");//imnp
 
 const getUser = async (req, res) => {//user details return
   try {
-    const data = await User.findById(req.query.id);
+    let data;
+    if(req.query.id)
+     data = await User.findById(req.query.id);
     data.password = undefined;
     res.status(200).send({ user: data });
   } catch (error) {

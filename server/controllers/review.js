@@ -2,7 +2,7 @@ const {validateReview,Review}= require("../models/review");
 
 const addReview=async(req,res,next)=>{
     try {
-        const data={...req.body,author:req.user._id}
+        const data={...req.body,author:req.user._id.toString()}
         const {error}= validateReview(data);
         if(error)
         return res.status(422).send({message:error.message});
@@ -31,7 +31,8 @@ const getReview=async(req,res,next)=>{
 }
 const getAllReviews=async(req,res,next)=>{
     try{
-
+        const reviews=await Review.find({}).populate("author","-password");
+        return res.status(200).send({message:"Successfully Sent",data:reviews})
     }
     catch(error){
      console.error(error)
