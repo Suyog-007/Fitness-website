@@ -21,8 +21,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-        {/* <Route path="/exercise/:id" element={<ExcerciseDetail />} /> */}
-        {/* <Route path="/BmiCalculator" element={<BmiCalculator />} /> */}
+        <Route path="/exercise/:id" element={<ExcerciseDetail />} />
+        <Route path="/BmiCalculator" element={<BmiCalculator />} />
       </Routes>
       <Footer />
     </Box>

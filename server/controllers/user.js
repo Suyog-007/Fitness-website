@@ -1,9 +1,9 @@
-const argon2 = require("argon2");
-const { User, validateSignup, validateLogin } = require("../models/user");
+const argon2 = require("argon2");//password hashing
+const { User, validateSignup, validateLogin } = require("../models/user");//imnported models object and functions
 
-const getUser = async (req, res) => {
+const getUser = async (req, res) => {//user details return
   try {
-    const data = req.user;
+    const data = await User.findById(req.query.id);
     data.password = undefined;
     res.status(200).send({ user: data });
   } catch (error) {
@@ -44,7 +44,7 @@ const login = async (req, res, next) => {
       return res.status(401).send({ message: "Invalid Email  or Password" });
 
     if (await argon2.verify(user.password, req.body.password)) {
-      const token = user.generateAuthToken();
+      const token = user.generateAuthToken();//jwt token
       user.password = undefined;
       return res.status(200).send({
         token: "Bearer " + token,
