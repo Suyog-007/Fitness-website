@@ -8,7 +8,7 @@ const combineApi = async (req, res, next) => {
     const exerciseOptions = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key":"4d0a03ca0dmsh7859b370c28df66p1bc75cjsne0ccad53d0e6",
+        "X-RapidAPI-Key": "e020821d1bmshae0cd8d04956914p1058a9jsnafe277244949",
         "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
       },
     };
@@ -16,12 +16,12 @@ const combineApi = async (req, res, next) => {
     const youtubeOptions = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "4d0a03ca0dmsh7859b370c28df66p1bc75cjsne0ccad53d0e6",
+        "X-RapidAPI-Key": "e020821d1bmshae0cd8d04956914p1058a9jsnafe277244949",
         "X-RapidAPI-Host": "youtube-search-and-download.p.rapidapi.com",
       },
     };
 
-    const {data}= await axios.get(
+    const { data } = await axios.get(
       `https://exercisedb.p.rapidapi.com/exercises/bodyPartList`,
       exerciseOptions
     );
@@ -31,7 +31,7 @@ const combineApi = async (req, res, next) => {
     //   youtubeOptions
     // );
     //res.send({ exerciseData, youtubeData, Data });
-    return res.send( data)
+    return res.send(data)
   } catch (e) {
     console.log(e);
     res.status(400).send({ message: "error" });

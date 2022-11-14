@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import './Review.css'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const SERVER_URL = process.env.REACT_APP_API_URL;
 const Review = () => {
@@ -13,20 +14,18 @@ const Review = () => {
 	const ratingRef = useRef(null);
 
 	useEffect(() => {
-		const userData = localStorage.getItem('fitnessUser');
-		axios.get(`${SERVER_URL}/reviews`, {
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `${JSON.parse(userData).token}`,
-			},
-		}).then((res) => {
+		getFeedBacks();
+	}, [])
+
+	const getFeedBacks = () => {
+		axios.get(`${SERVER_URL}/reviews`).then((res) => {
 			setFeedbacks(res.data.data);
+			console.log(res);
+			console.log(res.data.data);
 		}).catch((err) => {
 			console.log(err);
 		});
-
-
-	}, [])
+	}
 
 	useEffect(() => {
 		if (ratingRef.current) {
@@ -103,7 +102,8 @@ const Review = () => {
 					}
 				})
 					.then(res => {
-						console.log(res);
+						getFeedBacks();
+						toast.success('Feedback posted successfully');
 					})
 					.catch(err => {
 						console.log(err);

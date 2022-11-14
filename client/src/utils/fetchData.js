@@ -17,7 +17,7 @@ export const youtubeOptions = {
 export const BMIOptions = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '4d0a03ca0dmsh7859b370c28df66p1bc75cjsne0ccad53d0e6',
+    'X-RapidAPI-Key': 'e020821d1bmshae0cd8d04956914p1058a9jsnafe277244949',
     'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
   }
 };
