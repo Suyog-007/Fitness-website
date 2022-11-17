@@ -31,7 +31,7 @@ const getReview=async(req,res,next)=>{
 }
 const getAllReviews=async(req,res,next)=>{
     try{
-        const reviews=await Review.find({}).populate("author","-password");
+        const reviews=await Review.find({}).sort({createdAt: "1"}).populate("author","-password");
         return res.status(200).send({message:"Successfully Sent",data:reviews})
     }
     catch(error){

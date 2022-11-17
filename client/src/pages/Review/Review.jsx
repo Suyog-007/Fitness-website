@@ -3,6 +3,7 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import './Review.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import moment from 'moment'
 
 const SERVER_URL = process.env.REACT_APP_API_URL;
 const Review = () => {
@@ -19,9 +20,8 @@ const Review = () => {
 
 	const getFeedBacks = () => {
 		axios.get(`${SERVER_URL}/reviews`).then((res) => {
-			setFeedbacks(res.data.data);
-			console.log(res);
-			console.log(res.data.data);
+			const data = res.data.data.reverse();
+			setFeedbacks(data);
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -161,6 +161,9 @@ const Review = () => {
 										</div>
 										<div className="feedback_content">
 											{feedback.review}
+										</div>
+										<div className="created_at">
+											{moment(feedback.createdAt).format("Do MMM YY")}
 										</div>
 									</div>
 								)

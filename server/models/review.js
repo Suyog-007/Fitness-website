@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const Joi = require('@hapi/joi')
+const Joi = require('@hapi/joi');
+const { date } = require("@hapi/joi");
 Joi.objectId = require('joi-objectid')(Joi)
  
 
@@ -8,6 +9,7 @@ const reviewSchema = new mongoose.Schema({
     review:String,
     rating:Number,
     author:{type:mongoose.Types.ObjectId,ref:"User"},
+    createdAt: {type: Date, default: new Date()}
 });
 const validateReview = (data) => {
   const schema = Joi.object({
