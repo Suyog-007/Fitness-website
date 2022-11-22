@@ -9,6 +9,7 @@ import ExcerciseDetail from './pages/ExcersiceDetail';
 import BmiCalculator from './pages/BmiCalculator';
 import Login from './pages/Login/Login';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Review from './pages/Review/Review';
 import FitnessNews from './pages/FitnessNews';
 

@@ -73,4 +73,14 @@
   color: black;
   padding: 1rem;
   border-radius: 0.6rem;
+  position: relative;
+}
+
+
+.feedback .created_at {
+  position: absolute;
+  right: 10px;
+  color: rgb(149, 148, 148);
+  font-style: italic;
+  bottom: 5px;
 }
