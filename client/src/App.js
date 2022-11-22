@@ -10,6 +10,7 @@ import BmiCalculator from './pages/BmiCalculator';
 import Login from './pages/Login/Login';
 import { ToastContainer } from 'react-toastify';
 import Review from './pages/Review/Review';
+import FitnessNews from './pages/FitnessNews';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/review' element={<Review />} />
         <Route path="/exercise/:id" element={<ExcerciseDetail />} />
         <Route path="/BmiCalculator" element={<BmiCalculator />} />
+        <Route path='/news' element={<FitnessNews />} />
       </Routes>
       <Footer />
     </Box>

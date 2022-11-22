@@ -25,6 +25,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     <a href="#exercises" >Exercises</a>
     <Link to="/BmiCalculator">BMI Calculator</Link>
     <Link to='/review'>Review</Link>
+    <Link to="/news">News</Link>
     {
       !isAuthenticated ? (
         <div className='utils'>
