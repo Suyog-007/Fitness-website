@@ -24,6 +24,7 @@
     "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "puppeteer": "^19.3.0"
   }
 }
