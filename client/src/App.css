@@ -240,8 +240,16 @@ button {
 }
 
 .category_card img {
-  width: 100%;
+  min-width: 100%;
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
+}
+
+.category_container .loader_wrapper {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  margin-top: 100px;
+  margin-bottom: 400px;
 }
