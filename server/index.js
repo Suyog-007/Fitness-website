@@ -4,7 +4,8 @@ const app = express();
 const cors = require("cors");
 const mashupRoute = require("./routes/combineApi");
 const auth = require("./routes/user");
-const review =require("./routes/review")
+const review = require("./routes/review")
+const crawler = require("./routes/crawler");
 const mongoose = require("mongoose");
 dotenv.config();
 const PORT = 8000;
@@ -21,7 +22,8 @@ app.use(cors(corsOptions));
 
 app.use("/api/combineApi", mashupRoute);
 app.use("/api/user", auth);
-app.use("/api/reviews",review)
+app.use("/api/reviews", review);
+app.use("/api/crawler", crawler);
 
 app.listen(PORT, async () => {
   try {
@@ -31,7 +33,7 @@ app.listen(PORT, async () => {
         useNewUrlParser: true,
       },
       () => {
-      
+
         console.log("Connected to db");
         console.log(`Server running at port ${PORT}`);
       }
