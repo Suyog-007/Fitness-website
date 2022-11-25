@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const crawlerSchema = new mongoose.Schema({
-	image: String,
-	category: String,
+	img: String,
+	name: String,
 	url: String,
 	createdAt: { type: Date, default: new Date() }
 });
