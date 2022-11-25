@@ -87,7 +87,7 @@ const Categories = () => {
 	])
 	return (
 		<div className='Categories'>
-			<h1>Categories</h1>
+			<h1>Workouts</h1>
 			<div className='category_container'>
 				{data.map((item, index) => (
 					<a href={item.url} target="_blank">
