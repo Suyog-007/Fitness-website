@@ -52,10 +52,10 @@ const BmiCalculator = () => {
     return (
         <div>
             <Stack p="80px" gap="30px" backgroundColor="#FFF" width="90%" margin="auto" mt="100px" >
-                <TextField type="number" placeholder='Your Weight in Kg(must be 40kg to 160kg in range)' onChange={(e) => setWeight(e.target.value)} />
-                <TextField type="number" placeholder='Your Height in CM (must be 130cm to 230cm in range)' onChange={(e) => setHeight(e.target.value)} />
-                <TextField type="number" placeholder='Your Age(must be 0 to 80 in range)' onChange={(e) => setAge(e.target.value)} />
-                <Button variant="contained" color="primary" onClick={fetchBMICalData} disabled={loading}>Calculate BMI</Button>
+                <TextField type="number" name="bmi_weight" placeholder='Your Weight in Kg(must be 40kg to 160kg in range)' onChange={(e) => setWeight(e.target.value)} />
+                <TextField type="number" name="bmi_height" placeholder='Your Height in CM (must be 130cm to 230cm in range)' onChange={(e) => setHeight(e.target.value)} />
+                <TextField type="number" name="bmi_age" placeholder='Your Age(must be 0 to 80 in range)' onChange={(e) => setAge(e.target.value)} />
+                <Button variant="contained" name="bmi_submit" color="primary" onClick={fetchBMICalData} disabled={loading}>Calculate BMI</Button>
             </Stack>
             {BMI === "Not Calcualted" ? '' :
                 <Stack p="80px" gap="30px" backgroundColor="#FFF" width="90%" margin="auto" mt="100px">

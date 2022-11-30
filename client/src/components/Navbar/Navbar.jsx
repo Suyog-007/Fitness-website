@@ -34,7 +34,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
           <Link to='/auth?type=signup'><span>Sign Up</span></Link>
         </div>) : (
         <div className='utils'>
-          <div className="name">{loggedInData.user.firstName + " " + loggedInData.user.lastName}</div>
+          <div className="name">{loggedInData && loggedInData.user && loggedInData.user.firstName + " " + loggedInData && loggedInData.user && loggedInData.user.lastName}</div>
           <div className="logout" onClick={logout}>Logout</div>
         </div>
       )
